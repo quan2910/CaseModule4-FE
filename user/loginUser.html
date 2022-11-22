@@ -95,7 +95,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="hero-cap text-center">
-                        <h2>LOGIN TO FIND A GREAR JOB</h2>
+                        <h2>LOGIN TO FIND A GREAT JOB</h2>
                     </div>
                 </div>
             </div>
@@ -349,17 +349,19 @@
                 'Content-Type': 'application/json'
             },
             data: JSON.stringify(user),
+
             success: (token) => {
-                if(!token) {
+                if(token) {
+                    console.log(token)
+                    localStorage.setItem('token', token.token)
+                    localStorage.setItem('idUser', token.idUser)
+                    resetFormLogin();
+                    document.location.href = '../index.html'
+                }
+                else {
                     alert("Tai khoan hoac mat khau sai !!")
                     $('#username').val('');
                     $('#password').val('');
-                }
-                else {
-                    console.log(token)
-                    localStorage.setItem('token', token.token)
-                    resetFormLogin();
-                    document.location.href = '../index.html'
                 }
             }
         })
