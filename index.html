@@ -145,10 +145,16 @@
                         <h2>CHOOSE A CAREER</h2>
                     </div>
                 </div>
+<<<<<<< HEAD
             </div>
             <div class="row d-flex justify-contnet-center" id="majors">
 
+=======
+>>>>>>> df79356 (show major)
             </div>
+            <div class="row d-flex justify-contnet-center" id="majors">
+
+        </div>
             <!-- More Btn -->
             <!-- Section Button -->
             <div class="row">
@@ -975,6 +981,7 @@
 
 </body>
 <script>
+<<<<<<< HEAD
 
     showFile()
     function showFile() {
@@ -993,6 +1000,20 @@
                 for (let i = 0; i < majors.length; i++) {
                     htmlMajor += `
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6" onclick="showPostByMajor('${majors[i]._id}')">
+=======
+    showMajor();
+    function showMajor(){
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:3000/majors',
+            success: (majors)=>{
+                console.log(majors)
+                let htmlMajor = ``;
+                for (let i = 0; i< majors.length; i++){
+                    // console.log(majors[i].company)
+                    htmlMajor += `
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+>>>>>>> df79356 (show major)
                 <div class="single-services text-center mb-30">
                     <div class="services-ion">
                         <span class="flaticon-tour"></span>
@@ -1008,6 +1029,7 @@
             }
         })
     }
+<<<<<<< HEAD
     function logout(){
         localStorage.clear();
         document.location.href = 'user/loginUser.html'
@@ -1034,12 +1056,25 @@
                                 </ul>
                             </div>
                         </article>
+=======
+    function showPostByMajor() {
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:3000/posts/' + id,
+            success: (posts)=>{
+                console.log(posts)
+                let htmlMajor = ``;
+                for (let i = 0; i< posts.length; i++){
+                    htmlMajor += `
+                        // post
+>>>>>>> df79356 (show major)
                       `
                 }
                 $('#posts').html(htmlMajor);
             }
         })
     }
+<<<<<<< HEAD
     function findPostByName() {
         let namePost = $('#namePost').val();
 
@@ -1074,5 +1109,7 @@
             }
         })
     }
+=======
+>>>>>>> df79356 (show major)
 </script>
 </html>
