@@ -130,8 +130,12 @@
           <div class="row">
             <div class="col-sm-8">
               <div class="form-group">
+<<<<<<< HEAD
                 <input class="form-control valid" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your username'" placeholder="Enter your username">
 >>>>>>> 33f1eeb (login register user vs company)
+=======
+                <input class="form-control valid" name="companyName" id="companyName" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your username'" placeholder="Enter your username">
+>>>>>>> 912d6ad (dang ky dang nhap company vs user)
               </div>
             </div>
             <div class="col-8">
@@ -154,8 +158,12 @@
             </button>
 =======
             <p>You don't have an account? <a href="registerCompany.html" style="color: deeppink">Register Now</a></p>
+<<<<<<< HEAD
             <button type="submit" class="button button-contactForm boxed-btn">LOGIN</button>
 >>>>>>> 33f1eeb (login register user vs company)
+=======
+            <button type="submit" class="button button-contactForm boxed-btn" onclick="login()">LOGIN</button>
+>>>>>>> 912d6ad (dang ky dang nhap company vs user)
           </div>
         </form>
       </div>
@@ -385,6 +393,7 @@
 
 </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <script>
 
   function login() {
@@ -429,4 +438,73 @@
 =======
 
 >>>>>>> 33f1eeb (login register user vs company)
+=======
+<script>
+  function resetFormLogin() {
+    $('#companyName').val('');
+    $('#password').val('');
+
+  }
+
+  function login() {
+    let companyName = $('#companyName').val();
+    let password = $('#password').val();
+    let company = {
+      companyName: companyName,
+      password: password
+    }
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:3000/companies/login',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(company),
+      success: (token) => {
+        localStorage.setItem('token', token.token)
+        alert(token.token)
+        resetFormLogin();
+      }
+    })
+  }
+</script>
+<script>
+  function resetFormLogin() {
+    $('#companyName').val('');
+    $('#password').val('');
+
+  }
+
+  function login() {
+    let companyName = $('#companyName').val();
+    let password = $('#password').val();
+    let company = {
+      companyName: companyName,
+      password: password
+    }
+    console.log(company)
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:3000/companies/login',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(company),
+      success: (token) => {
+        if(!token) {
+          alert("Tai khoan hoac mat khau sai !!")
+          $('#companyName').val('');
+          $('#password').val('');
+        }
+        else {
+          console.log(token)
+          localStorage.setItem('token', token.token)
+          resetFormLogin();
+          document.location.href = '../index.html'
+        }
+      }
+    })
+  }
+</script>
+>>>>>>> 912d6ad (dang ky dang nhap company vs user)
 </html>
