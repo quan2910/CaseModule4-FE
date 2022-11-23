@@ -709,6 +709,7 @@
                                  </ul
                                  <ul class="blog-info-link">
                                  </ul
+                                 <td><button onclick="historyApply()">History</button></td>
                                  <td><button onclick="applyPost('${posts[i]._id}')">Apply</button></td>
                             </div>
                         </article>`
@@ -774,6 +775,38 @@
       //         'error'
       //     )
       // }
+    })
+  }
+
+  function historyApply (id) {
+
+     id = localStorage.getItem('idUser');
+    console.log(id)
+    $.ajax({
+      type: 'GET',
+      url: 'http://localhost:3000/applies/find-post-apply/637e3e616bf92fe559031205',
+      success: (posts) => {
+        console.log(posts)
+        let htmlPost = ``;
+        for (let i = 0; i < posts.length; i++) {
+          console.log(posts[i].company)
+          htmlPost += `
+                      <article class="blog_item">
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="single-blog.html">
+                                    <h2>${posts[i].post.namePost}</h2>
+                                </a>
+                                <p>${posts[i].post.contents}</p>
+                                 <ul class="blog-info-link">
+                                 </ul
+                                 <ul class="blog-info-link">
+                                 </ul
+                                 <td><button onclick="applyPost('${posts[i]._id}')">Apply</button></td>
+                            </div>
+                        </article>`
+        }
+        $('#posts').html(htmlPost);
+      }
     })
   }
 
