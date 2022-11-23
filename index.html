@@ -11,7 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
             integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
 
     <!-- CSS here -->
@@ -27,10 +28,12 @@
     <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="library/sweetalert2.css">
+    <script src="library/sweetalert2.js"></script>
+    <script src="library/sweetalert2.all.js"></script>
 </head>
 
 <body>
-
 
 
 <div>
@@ -43,27 +46,28 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label" >Title</label>
-                        <input type="text" class="form-control"  id="namePost" aria-describedby="emailHelp">
+                        <label class="form-label">Title</label>
+                        <input type="text" class="form-control" id="namePost" aria-describedby="emailHelp">
                     </div>
 
-                    <div class="mb-3" id = 'major' >
-                        <select class="form-select" aria-label="Default select example" >
+                    <div class="mb-3" id='major'>
+                        <select class="form-select" aria-label="Default select example">
                             <option onclick="showFormCreate()">Major Name</option>
                         </select>
                     </div>
-                    <div class="mb-3" id = 'company' >
-                        <select class="form-select" aria-label="Default select example" >
+                    <div class="mb-3" id='company'>
+                        <select class="form-select" aria-label="Default select example">
                             <option onclick="showFormCreate()">Company Name</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label  class="form-label" >Contents</label>
+                        <label class="form-label">Contents</label>
                         <input type="text" class="form-control" id="contents">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary"onclick="create()" data-bs-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="create()" data-bs-dismiss="modal">Save
+                    </button>
                 </div>
             </div>
         </div>
@@ -71,40 +75,41 @@
 </div>
 
 
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Form Edit</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Name</label>
-                <input type="text" id="nameEdit" class="form-control" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3" id = 'company' >
-                <select class="form-select" aria-label="Default select example" >
-                    <option onclick="showFormCreate()">Company Name</option>
-                </select>
-            </div>
-            <div class="mb-3" id = 'major' >
-                <select class="form-select" aria-label="Default select example" >
-                    <option onclick="showFormCreate()">Major Name</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Contents</label>
-                <input type="text" id="contentsEdit" class="form-control" aria-describedby="emailHelp" >
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="editPost()" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop">Save
-                </button>
+<div>
+    <div class="modal fade" id="exampleModal_edit" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">RTY</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input type="text" class="form-control" id="namePost" aria-describedby="emailHelp">
+                    </div>
+
+                    <div class="mb-3" id='major'>
+                        <select class="form-select" aria-label="Default select example">
+                            <option onclick="showFormEdit()">Major Name</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Contents</label>
+                        <input type="text" class="form-control" id="contents">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="editPost()" data-bs-dismiss="modal">
+                        Edit
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 <header>
@@ -125,18 +130,20 @@
                             <div class="main-menu">
                                 <nav class="d-none d-lg-block">
                                     <ul id="navigation">
+                                        <li>
                                         <li><a href="index.html">Home</a></li>
-                                        <li><a href="job_listing.html">Find a Jobs </a></li>
+                                        <li><a onclick="">find</a></li>
                                         <li><a href="about.html">About</a></li>
                                         <li><a href="blog.html">Blog</a>
                                         </li>
-                                        <li><a data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="showFormCreate()" > Contact</a></li>
+                                        <li><a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                               onclick="showFormCreate()"> Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>
                             <!-- Header-btn -->
                             <div class="header-btn d-none f-right d-lg-block">
-                                <a href="#" class="btn head-btn1">Register</a>
+                                <a onclick="showPostOfCompany()" class="btn head-btn1">My Post</a>
                                 <a href="#" class="btn head-btn2">Login</a>
                             </div>
                         </div>
@@ -157,7 +164,8 @@
     <div class="slider-area ">
         <!-- Mobile Menu -->
         <div class="slider-active">
-            <div class="single-slider slider-height d-flex align-items-center" data-background="assets/img/hero/h1_hero.jpg">
+            <div class="single-slider slider-height d-flex align-items-center"
+                 data-background="assets/img/hero/h1_hero.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-6 col-lg-9 col-md-10">
@@ -207,95 +215,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row d-flex justify-contnet-center">
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-tour"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Design & Creative</a></h5>
-                            <span>(653)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-cms"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Design & Development</a></h5>
-                            <span>(658)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-report"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Sales & Marketing</a></h5>
-                            <span>(658)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-app"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Mobile Application</a></h5>
-                            <span>(658)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-helmet"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Construction</a></h5>
-                            <span>(658)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-high-tech"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Information Technology</a></h5>
-                            <span>(658)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-real-estate"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Real Estate</a></h5>
-                            <span>(658)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-content"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Content Writer</a></h5>
-                            <span>(658)</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="row d-flex justify-contnet-center" id="majors">
+
             </div>
             <!-- More Btn -->
 
@@ -303,7 +224,7 @@
     </div>
     <!-- Our Services End -->
     <!-- Online CV Area Start -->
-    <div class="online-cv cv-bg section-overly pt-90 pb-120"  data-background="assets/img/gallery/cv_bg.jpg">
+    <div class="online-cv cv-bg section-overly pt-90 pb-120" data-background="assets/img/gallery/cv_bg.jpg">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-10">
@@ -325,216 +246,12 @@
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
                     <div class="blog_left_sidebar" id="posts">
-
-                        <nav class="blog-pagination justify-content-center d-flex">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a href="#" class="page-link" aria-label="Previous">
-                                        <i class="ti-angle-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">1</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a href="#" class="page-link">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link" aria-label="Next">
-                                        <i class="ti-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="blog_right_sidebar">
-                        <aside class="single_sidebar_widget search_widget">
-                            <form action="#">
-                                <div class="form-group">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder='Search Keyword'
-                                               onfocus="this.placeholder = ''"
-                                               onblur="this.placeholder = 'Search Keyword'">
-                                        <div class="input-group-append">
-                                            <button class="btns" type="button"><i class="ti-search"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                        type="submit">Search</button>
-                            </form>
-                        </aside>
-
-                        <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title">Category</h4>
-                            <ul class="list cat-list">
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Resaurant food</p>
-                                        <p>(37)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Travel news</p>
-                                        <p>(10)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Modern technology</p>
-                                        <p>(03)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Product</p>
-                                        <p>(11)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Inspiration</p>
-                                        <p>21</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Health Care (21)</p>
-                                        <p>09</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </aside>
-
-                        <aside class="single_sidebar_widget popular_post_widget">
-                            <h3 class="widget_title">Recent Post</h3>
-                            <div class="media post_item">
-                                <img src="assets/img/post/post_1.png" alt="post">
-                                <div class="media-body">
-                                    <a href="single-blog.html">
-                                        <h3>From life was you fish...</h3>
-                                    </a>
-                                    <p>January 12, 2019</p>
-                                </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="assets/img/post/post_2.png" alt="post">
-                                <div class="media-body">
-                                    <a href="single-blog.html">
-                                        <h3>The Amazing Hubble</h3>
-                                    </a>
-                                    <p>02 Hours ago</p>
-                                </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="assets/img/post/post_3.png" alt="post">
-                                <div class="media-body">
-                                    <a href="single-blog.html">
-                                        <h3>Astronomy Or Astrology</h3>
-                                    </a>
-                                    <p>03 Hours ago</p>
-                                </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="assets/img/post/post_4.png" alt="post">
-                                <div class="media-body">
-                                    <a href="single-blog.html">
-                                        <h3>Asteroids telescope</h3>
-                                    </a>
-                                    <p>01 Hours ago</p>
-                                </div>
-                            </div>
-                        </aside>
-                        <aside class="single_sidebar_widget tag_cloud_widget">
-                            <h4 class="widget_title">Tag Clouds</h4>
-                            <ul class="list">
-                                <li>
-                                    <a href="#">project</a>
-                                </li>
-                                <li>
-                                    <a href="#">love</a>
-                                </li>
-                                <li>
-                                    <a href="#">technology</a>
-                                </li>
-                                <li>
-                                    <a href="#">travel</a>
-                                </li>
-                                <li>
-                                    <a href="#">restaurant</a>
-                                </li>
-                                <li>
-                                    <a href="#">life style</a>
-                                </li>
-                                <li>
-                                    <a href="#">design</a>
-                                </li>
-                                <li>
-                                    <a href="#">illustration</a>
-                                </li>
-                            </ul>
-                        </aside>
-
-
-                        <aside class="single_sidebar_widget instagram_feeds">
-                            <h4 class="widget_title">Instagram Feeds</h4>
-                            <ul class="instagram_row flex-wrap">
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="assets/img/post/post_5.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="assets/img/post/post_6.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="assets/img/post/post_7.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="assets/img/post/post_8.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="assets/img/post/post_9.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="img-fluid" src="assets/img/post/post_10.png" alt="">
-                                    </a>
-                                </li>
-                            </ul>
-                        </aside>
-
-
-                        <aside class="single_sidebar_widget newsletter_widget">
-                            <h4 class="widget_title">Newsletter</h4>
-
-                            <form action="#">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" onfocus="this.placeholder = ''"
-                                           onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
-                                </div>
-                                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                        type="submit">Subscribe</button>
-                            </form>
-                        </aside>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!--================Blog Area =================-->
-
 
 
     <!-- How  Apply Process Start-->
@@ -558,7 +275,8 @@
                         </div>
                         <div class="process-cap">
                             <h5>1. Search a job</h5>
-                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut
+                                laborea.</p>
                         </div>
                     </div>
                 </div>
@@ -569,7 +287,8 @@
                         </div>
                         <div class="process-cap">
                             <h5>2. Apply for job</h5>
-                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut
+                                laborea.</p>
                         </div>
                     </div>
                 </div>
@@ -580,7 +299,8 @@
                         </div>
                         <div class="process-cap">
                             <h5>3. Get your job</h5>
-                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut
+                                laborea.</p>
                         </div>
                     </div>
                 </div>
@@ -601,7 +321,8 @@
                             <div class="footer-tittle">
                                 <h4>About Us</h4>
                                 <div class="footer-pera">
-                                    <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so behold.</p>
+                                    <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so
+                                        behold.</p>
                                 </div>
                             </div>
                         </div>
@@ -646,16 +367,19 @@
                                 <p>Heaven fruitful doesn't over lesser in days. Appear creeping.</p>
                             </div>
                             <!-- Form -->
-                            <div class="footer-form" >
+                            <div class="footer-form">
                                 <div id="mc_embed_signup">
-                                    <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a...a4423d01"
+                                    <form target="_blank"
+                                          action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a...a4423d01"
                                           method="get" class="subscribe_form relative mail_part">
-                                        <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                        <input type="email" name="email" id="newsletter-form-email"
+                                               placeholder="Email Address"
                                                class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
                                                onblur="this.placeholder = ' Email Address '">
                                         <div class="form-icon">
                                             <button type="submit" name="submit" id="newsletter-submit"
-                                                    class="email_icon newsletter-submit button-contactForm"><img src="assets/img/icon/form.png" alt=""></button>
+                                                    class="email_icon newsletter-submit button-contactForm"><img
+                                                    src="assets/img/icon/form.png" alt=""></button>
                                         </div>
                                         <div class="mt-10 info"></div>
                                     </form>
@@ -703,8 +427,12 @@
                     <div class="col-xl-10 col-lg-10 ">
                         <div class="footer-copy-right">
                             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                                All rights reserved | This template is made with <i class="fa fa-heart"
+                                                                                    aria-hidden="true"></i> by <a
+                                        href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-2">
@@ -723,6 +451,8 @@
 </footer>
 
 <!-- JS here -->
+<script src="library/sweetalert2.js"></script>
+<script src="library/sweetalert2.all.js"></script>
 
 <!-- All JS Custom Plugins Link Here here -->
 <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
@@ -763,14 +493,15 @@
 <script src="./assets/js/main.js"></script>
 <script>
     showAll()
-    function showAll(){
+    function showAll() {
         $.ajax({
             type: "GET",
             url: 'http://localhost:3000/posts',
-            success: (posts)=>{
+            success: (posts) => {
+                console.log("chán lắm rồi" )
                 console.log(posts)
                 let htmlPost = ``;
-                for (let i = 0; i< posts.length; i++){
+                for (let i = 0; i < posts.length; i++) {
                     console.log(posts[i].company)
                     htmlPost += `
                       <article class="blog_item">
@@ -787,10 +518,7 @@
 
                                     <li><a href="#"><i class="fa fa-comments"></i> ${posts[i].major.majorName}</a></li>
                                 </ul
-                                <button onclick="editPost()">Edit</button>
-                                <td><button onclick="showDelete()">Delete</button></td>
                             </div>
-
                         </article>`
                 }
                 $('#posts').html(htmlPost);
@@ -798,15 +526,15 @@
 
         })
     }
-    function showFormCreate(){
+    function showFormCreate() {
         $.ajax({
             type: "GET",
             url: 'http://localhost:3000/majors',
-            success: (majors)=>{
+            success: (majors) => {
                 let htmlMajor = `<div class="mb-3" id ='major'>
                         <label  class="form-label" >Major Name</label>
                         <select id="majorInput" name = "major">`;
-                for (let i = 0; i< majors.length; i++){
+                for (let i = 0; i < majors.length; i++) {
                     console.log(majors[i].majorName)
                     htmlMajor += `
 
@@ -823,11 +551,11 @@
         $.ajax({
             type: "GET",
             url: 'http://localhost:3000/companies',
-            success: (companies)=>{
+            success: (companies) => {
                 let htmlCompany = `<div class="mb-3" id ='company'>
                         <label  class="form-label" >Company Name</label>
                         <select id="companyInput" name = "company">`;
-                for (let i = 0; i< companies.length; i++){
+                for (let i = 0; i < companies.length; i++) {
                     console.log(companies[i].companyName)
                     htmlCompany += `
 
@@ -842,8 +570,8 @@
 
         })
     }
-    function create(){
-        let namePost =$('#namePost').val();
+    function create() {
+        let namePost = $('#namePost').val();
         let companyId = $('#companyInput').val();
         let majorId = $('#majorInput').val();
         let contents = $('#contents').val();
@@ -861,32 +589,201 @@
         $.ajax({
             type: 'POST',
             url: 'http://localhost:3000/posts',
-            headers:{
+            headers: {
                 'Content-Type': 'application/json'
             },
-            data:JSON.stringify(posts),
-            success: ()=>{
+            data: JSON.stringify(posts),
+            success: () => {
                 showAll();
                 resetFormCreate();
             }
         })
     }
-    function resetFormCreate(){
+    function resetFormCreate() {
         $('#namePost').val('');
         $('#companyName').val('');
         $('#majorName').val('');
         $('#contents').val('');
     }
-    function editPost() {
-        let id = idEdit;
-        console.log(id)
-        let nameEdit = $('#nameEdit').val();
-        let contentsEdit = $('#contentsEdit').val();
-        let companyEdit = $('#companyInput').val();
-        let majorEdit = $('#majorInput').val();
-        let post = {
-            namePost: nameEdit,
-            contents: contentsEdit,
+    showMajor();
+    function showMajor() {
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:3000/majors',
+            success: (majors) => {
+                console.log(majors)
+                let htmlMajor = ``;
+                for (let i = 0; i < majors.length; i++) {
+                    htmlMajor += `
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6" onclick="showPostByMajor('${majors[i]._id}')">
+                <div class="single-services text-center mb-30">
+                    <div class="services-ion">
+                        <span class="flaticon-tour"></span>
+                    </div>
+                    <div class="services-cap">
+                        <h5><a href="">${majors[i].majorName}</a></h5>
+                    </div>
+                </div>
+            </div>
+                      `
+                }
+                $('#majors').html(htmlMajor);
+            }
+        })
+    }
+    function showPostByMajor(id) {
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:3000/posts/' + id,
+            success: (posts) => {
+                console.log(posts)
+                let htmlMajor = ``;
+                for (let i = 0; i < posts.length; i++) {
+                    htmlMajor += `
+                         <article class="blog_item">
+                            <div class="blog_details">
+                                <a class="d-inline-block" >
+                                    <h2>${posts[i].namePost}</h2>
+                                </a>
+                                <p>${posts[i].contents}</p>
+                                <ul class="blog-info-link">
+                                    <li><a href="#"><i class="fa fa-user"></i> ${posts[i].company.companyName}</a></li>
+
+                                </ul
+                                <ul class="blog-info-link">
+
+                                    <li><a href="#"><i class="fa fa-comments"></i> ${posts[i].major.majorName}</a></li>
+                                </ul
+                            </div>
+                        </article>
+                      `
+                }
+                $('#posts').html(htmlMajor);
+            }
+        })
+    }
+    function showPostOfCompany(idCompany) {
+        idCompany = localStorage.getItem('idCompany')
+        console.log('đay rồi')
+        console.log(idCompany)
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/applies/findCompany/' + idCompany,
+            success: (posts) => {
+                console.log(posts)
+                let htmlPost = ``;
+                for (let i = 0; i < posts.length; i++) {
+                    console.log(posts[i].company)
+                    htmlPost += `
+                      <article class="blog_item">
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="single-blog.html">
+                                    <h2>${posts[i].namePost}</h2>
+                                </a>
+                                <p>${posts[i].contents}</p>
+                                 <ul class="blog-info-link">
+                                 </ul
+                                 <ul class="blog-info-link">
+                                 </ul
+                                 <td><button onclick="showFormEdit('${posts[i]._id}')"   aria-label="Default select example"type="button" data-bs-toggle="modal" data-bs-target="#exampleModal_edit">Edit</button></td>
+                                  <td><button onclick="showFormDelete('${posts[i]._id}')">Delete</button></td>
+
+                            </div>
+                        </article>`
+                }
+                $('#posts').html(htmlPost);
+            }
+        })
+    }
+    function showFormDelete(idDelete) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Có xóa không???',
+            // text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Xóa',
+            cancelButtonText: 'Không',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: 'http://localhost:3000/posts/' + idDelete,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    success: () => {
+                        showPostOfCompany();
+                    }
+                })
+                swalWithBootstrapButtons.fire(
+                    // 'Deleted!',
+                    // 'Your file has been deleted.',
+                    // 'success'
+                    'Đã xóa!'
+                )
+            }
+            // else if (
+            //     /* Read more about handling dismissals below */
+            //     result.dismiss === Swal.DismissReason.cancel
+            // ) {
+            //     swalWithBootstrapButtons.fire(
+            //         'Cancelled',
+            //         // 'Your imaginary file is safe :)',
+            //         'error'
+            //     )
+            // }
+        })
+    }
+
+
+
+    let idEditPost;
+    function showFormEdit(id) {
+        idEditPost = id
+        console.log(idEditPost)
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:3000/majors',
+            success: (majors) => {
+                let htmlMajor = `<div class="mb-3" id ='major'>
+                        <label  class="form-label" >Major Name</label>
+                        <select id="majorInput" name = "major">`;
+                for (let i = 0; i < majors.length; i++) {
+                    console.log(majors[i].majorName)
+                    htmlMajor += `
+
+                            <option value="${majors[i]._id}" name = "major">${majors[i].majorName} </option>
+
+                      `
+                }
+                htmlMajor += `</select>
+                    </div>`
+                $('#major').html(htmlMajor);
+            }
+
+        })
+    }
+
+
+    function editPost(idEdit) {
+        idEdit = idEditPost
+        id = localStorage.getItem('idCompany')
+        console.log('id', id)
+        let namePost = $('#namePost').val();
+        let companyId = id;
+        let majorId = $('#majorInput').val();
+        let contents = $('#contents').val();
+        let posts = {
+            namePost: namePost,
             company: {
                 _id: companyId
             },
@@ -895,23 +792,23 @@
             },
             contents: contents
         }
+
         $.ajax({
+
             type: 'PUT',
-            url: 'http://localhost:3000/posts/'+id,
+            url: 'http://localhost:3000/posts/' + idEdit,
             headers: {
-                'Content-Type': 'Application/json'
+                'Content-Type': 'application/json'
             },
-            data: JSON.stringify(post),
+            data: JSON.stringify(posts),
             success: () => {
-                showAll();
-                resetFormCreate();
+                console.log('success')
+                console.log(posts)
+                showPostOfCompany();
             }
         })
-
     }
-
-
-
 </script>
+
 </body>
 </html>
