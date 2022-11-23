@@ -74,7 +74,7 @@
                             <!-- Header-btn -->
                             <div class="header-btn d-none f-right d-lg-block">
                                 <a href="#" class="btn head-btn1">Register</a>
-                                <a href="#" class="btn head-btn2">Login</a>
+                                <a href="loginCompany.html" class="btn head-btn2">Login</a>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,8 @@
                         <div class="col-sm-8">
                             <div class="form-group">
                                 <input class="form-control valid" name="companyName" id="companyName" type="text"
-                                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Company Name'"
+                                       onfocus="this.placeholder = ''"
+                                       onblur="this.placeholder = 'Enter your Company Name'"
                                        placeholder="Enter your username">
                             </div>
                         </div>
@@ -132,7 +133,8 @@
                     </div>
                     <div class="form-group mt-3">
                         <p>You have an account? <a href="loginCompany.html" style="color: deeppink">Login Now</a></p>
-                        <button type="submit" class="button button-contactForm boxed-btn" onclick="register()">SIGNUP</button>
+                        <button type="submit" class="button button-contactForm boxed-btn" onclick="register()">SIGNUP
+                        </button>
                     </div>
                 </form>
             </div>
@@ -352,7 +354,7 @@
         let password = $('#password').val();
         let flag = false;
         do {
-            if (companyName === "" || password === "" ) {
+            if (companyName === "" || password === "") {
                 alert("Vui long nhap du thong tin !!")
                 break;
             } else {
@@ -363,15 +365,15 @@
                 $.ajax({
                     type: 'POST',
                     url: 'http://localhost:3000/companies/register',
-                    data: JSON.stringify(company),
-                    header: {
+                    headers: {
                         'Content-Type': 'application/json',
                     },
+                    data: JSON.stringify(company),
                     success: (mess) => {
-                        if ( mess.checkRegister){
-                            alert (mess.mess)
-                            document.location.href = "registerCompany.html"
-                        }else {
+                        if (mess.checkRegister) {
+                            alert(mess.mess)
+                            document.location.href = "loginCompany.html.html"
+                        } else {
                             alert(mess.mess)
                             $('#companyName').val('');
                             $('#password').val('');
@@ -379,7 +381,7 @@
                     }
                 })
             }
-        }while (flag === true)
+        } while (flag === true)
     }
 </script>
 
