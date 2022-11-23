@@ -789,12 +789,10 @@
                                  <ul class="blog-info-link">
                                  </ul
                                  <ul class="blog-info-link">
-
-
                                  </ul
                                  <td><button onclick="showFormEdit('${posts[i]._id}')"   aria-label="Default select example"type="button" data-bs-toggle="modal" data-bs-target="#exampleModal_edit">Edit</button></td>
                                  <td><button onclick="showFormDelete('${posts[i]._id}')">Delete</button></td>
-                                 <td><button onclick="('${posts[i]._id}')">Show CV</button></td>
+                                 <td><button onclick="showCvOfPost('${posts[i]._id}')">Show CV</button></td>
                             </div>
 
                         </article>`
@@ -804,8 +802,33 @@
         })
     }
 
-    function showCvOfPost() {
-
+    function showCvOfPost(id) {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/applies/find-cv/' + id,
+            success: (applies) => {
+                // <h2>${applies[i].user.cv}</h2>
+                console.log('id', id)
+                console.log(applies)
+                let htmlPost = ``;
+                for (let i = 0; i < applies.length; i++) {
+                    htmlPost += `
+                      <article class="blog_item">
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="single-blog.html">
+                                </a>
+                                <p>${applies[i].user.username}</p>
+                                 <ul class="blog-info-link">
+                                 </ul
+                                 <ul class="blog-info-link">
+                                 </ul
+                                 <td><button onclick=""   aria-label="Default select example"type="button" data-bs-toggle="modal" data-bs-target="#exampleModal_edit">Edit</button></td>
+                            </div>
+                        </article>`
+                }
+                $('#posts').html(htmlPost);
+            }
+        })
     }
 
     let idEditPost;
