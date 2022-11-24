@@ -55,11 +55,11 @@
                             <option onclick="showFormCreate()">Major Name</option>
                         </select>
                     </div>
-                    <div class="mb-3" id='company'>
-                        <select class="form-select" aria-label="Default select example">
-                            <option onclick="showFormCreate()">Company Name</option>
-                        </select>
-                    </div>
+<!--                    <div class="mb-3" id='company'>-->
+<!--                        <select class="form-select" aria-label="Default select example">-->
+<!--                            <option onclick="showFormCreate()">Company Name</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
                     <div class="mb-3">
                         <label class="form-label">Contents</label>
                         <input type="text" class="form-control" id="contents">
@@ -81,23 +81,23 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">RTY</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel_edit">RTY</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Title</label>
-                        <input type="text" class="form-control" id="namePost" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" id="namePostEdit" aria-describedby="emailHelp">
                     </div>
 
-                    <div class="mb-3" id='major'>
+                    <div class="mb-3" id='majorEdit'>
                         <select class="form-select" aria-label="Default select example">
                             <option onclick="showFormEdit()">Major Name</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Contents</label>
-                        <input type="text" class="form-control" id="contents">
+                        <input type="text" class="form-control" id="contentsEdit">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -109,7 +109,6 @@
         </div>
     </div>
 </div>
-
 
 
 <header>
@@ -137,14 +136,14 @@
                                         <li><a href="blog.html">Blog</a>
                                         </li>
                                         <li><a data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                               onclick="showFormCreate()"> Contact</a></li>
+                                               onclick="showFormCreate()"> Create Post</a></li>
                                     </ul>
                                 </nav>
                             </div>
                             <!-- Header-btn -->
                             <div class="header-btn d-none f-right d-lg-block">
                                 <a onclick="showPostOfCompany()" class="btn head-btn1">My Post</a>
-                                <a href="#" class="btn head-btn2">Login</a>
+                                <a onclick="logout()" href="#" class="btn head-btn2">Log Out</a>
                             </div>
                         </div>
                     </div>
@@ -493,12 +492,13 @@
 <script src="./assets/js/main.js"></script>
 <script>
     showAll()
+
     function showAll() {
         $.ajax({
             type: "GET",
             url: 'http://localhost:3000/posts',
             success: (posts) => {
-                console.log("chán lắm rồi" )
+                console.log("chán lắm rồi")
                 console.log(posts)
                 let htmlPost = ``;
                 for (let i = 0; i < posts.length; i++) {
@@ -509,14 +509,14 @@
                                 <a class="d-inline-block" href="single-blog.html">
                                     <h2>${posts[i].namePost}</h2>
                                 </a>
-                                <p>${posts[i].contents}</p>
+                                <p>Content: ${posts[i].contents}</p>
                                 <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> ${posts[i].company.companyName}</a></li>
+                                    <li><a ><i</i>Company Name: ${posts[i].company.companyName}</a></li>
 
                                 </ul
                                 <ul class="blog-info-link">
 
-                                    <li><a href="#"><i class="fa fa-comments"></i> ${posts[i].major.majorName}</a></li>
+                                    <li><a ><i></i>Name Major: ${posts[i].major.nameMajor}</a></li>
                                 </ul
                             </div>
                         </article>`
@@ -526,19 +526,21 @@
 
         })
     }
+
     function showFormCreate() {
         $.ajax({
             type: "GET",
             url: 'http://localhost:3000/majors',
             success: (majors) => {
+                console.log(majors)
                 let htmlMajor = `<div class="mb-3" id ='major'>
                         <label  class="form-label" >Major Name</label>
                         <select id="majorInput" name = "major">`;
                 for (let i = 0; i < majors.length; i++) {
-                    console.log(majors[i].majorName)
+                    console.log(majors[i].nameMajor)
                     htmlMajor += `
 
-                            <option value="${majors[i]._id}" name = "major">${majors[i].majorName} </option>
+                            <option value="${majors[i]._id}" name = "major">${majors[i].nameMajor} </option>
 
                       `
                 }
@@ -548,31 +550,32 @@
             }
 
         })
-        $.ajax({
-            type: "GET",
-            url: 'http://localhost:3000/companies',
-            success: (companies) => {
-                let htmlCompany = `<div class="mb-3" id ='company'>
-                        <label  class="form-label" >Company Name</label>
-                        <select id="companyInput" name = "company">`;
-                for (let i = 0; i < companies.length; i++) {
-                    console.log(companies[i].companyName)
-                    htmlCompany += `
-
-                            <option value="${companies[i]._id}" name = "company">${companies[i].companyName} </option>
-
-                      `
-                }
-                htmlCompany += `</select>
-                    </div>`
-                $('#company').html(htmlCompany);
-            }
-
-        })
+        // $.ajax({
+        //     type: "GET",
+        //     url: 'http://localhost:3000/companies',
+        //     success: (companies) => {
+        //         let htmlCompany = `<div class="mb-3" id ='company'>
+        //                 <label  class="form-label" >Company Name</label>
+        //                 <select id="companyInput" name = "company">`;
+        //         for (let i = 0; i < companies.length; i++) {
+        //             console.log(companies[i].companyName)
+        //             htmlCompany += `
+        //
+        //                     <option value="${companies[i]._id}" name = "company">${companies[i].companyName} </option>
+        //
+        //               `
+        //         }
+        //         htmlCompany += `</select>
+        //             </div>`
+        //         $('#company').html(htmlCompany);
+        //     }
+        //
+        // })
     }
+
     function create() {
         let namePost = $('#namePost').val();
-        let companyId = $('#companyInput').val();
+        let companyId = localStorage.getItem('idCompany');
         let majorId = $('#majorInput').val();
         let contents = $('#contents').val();
         let posts = {
@@ -599,13 +602,16 @@
             }
         })
     }
+
     function resetFormCreate() {
         $('#namePost').val('');
         $('#companyName').val('');
         $('#majorName').val('');
         $('#contents').val('');
     }
+
     showMajor();
+
     function showMajor() {
         $.ajax({
             type: "GET",
@@ -621,7 +627,7 @@
                         <span class="flaticon-tour"></span>
                     </div>
                     <div class="services-cap">
-                        <h5><a href="">${majors[i].majorName}</a></h5>
+                        <h5><a href="">${majors[i].nameMajor}</a></h5>
                     </div>
                 </div>
             </div>
@@ -631,6 +637,7 @@
             }
         })
     }
+
     function showPostByMajor(id) {
         $.ajax({
             type: "GET",
@@ -645,15 +652,12 @@
                                 <a class="d-inline-block" >
                                     <h2>${posts[i].namePost}</h2>
                                 </a>
-                                <p>${posts[i].contents}</p>
+                                <p>That dominion stars lights dominion divide years for fourth have don't stars is that
+                                    he earth it first without heaven in place seed it second morning saying.</p>
                                 <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> ${posts[i].company.companyName}</a></li>
-
-                                </ul
-                                <ul class="blog-info-link">
-
-                                    <li><a href="#"><i class="fa fa-comments"></i> ${posts[i].major.majorName}</a></li>
-                                </ul
+                                    <li><a href="#"><i class="fa fa-user"></i>aaa</a></li>
+                                    <li><a href="#"><i class="fa fa-comments"></i>${posts[i].contents}</a></li>
+                                </ul>
                             </div>
                         </article>
                       `
@@ -662,14 +666,16 @@
             }
         })
     }
+
     function showPostOfCompany(idCompany) {
         idCompany = localStorage.getItem('idCompany')
-        console.log('đay rồi')
+
         console.log(idCompany)
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:3000/applies/findCompany/' + idCompany,
+            url: 'http://localhost:3000/applies/show-post-of-company/' + idCompany,
             success: (posts) => {
+                console.log('Post Of Company', posts)
                 console.log(posts)
                 let htmlPost = ``;
                 for (let i = 0; i < posts.length; i++) {
@@ -695,6 +701,7 @@
             }
         })
     }
+
     function showFormDelete(idDelete) {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -745,8 +752,8 @@
     }
 
 
-
     let idEditPost;
+
     function showFormEdit(id) {
         idEditPost = id
         console.log(idEditPost)
@@ -754,7 +761,7 @@
             type: "GET",
             url: 'http://localhost:3000/majors',
             success: (majors) => {
-                let htmlMajor = `<div class="mb-3" id ='major'>
+                let htmlMajor = `<div class="mb-3" id ='majorEdit'>
                         <label  class="form-label" >Major Name</label>
                         <select id="majorInput" name = "major">`;
                 for (let i = 0; i < majors.length; i++) {
@@ -778,10 +785,10 @@
         idEdit = idEditPost
         id = localStorage.getItem('idCompany')
         console.log('id', id)
-        let namePost = $('#namePost').val();
+        let namePost = $('#namePostEdit').val();
         let companyId = id;
         let majorId = $('#majorInput').val();
-        let contents = $('#contents').val();
+        let contents = $('#contentsEdit').val();
         let posts = {
             namePost: namePost,
             company: {
@@ -807,6 +814,11 @@
                 showPostOfCompany();
             }
         })
+    }
+
+    function logout() {
+        localStorage.clear();
+        document.location.href = 'company/loginCompany.html'
     }
 </script>
 
