@@ -675,42 +675,47 @@
     function resetFormLogin() {
         $('#username').val('');
         $('#password').val('');
-        $('#image').val('');
 
     }
 
     function login() {
         let username = $('#username').val();
         let password = $('#password').val();
-        let user = {
-            username: username,
-            password: password
-        }
-        console.log(user)
-        $.ajax({
-            type: 'POST',
-            url: 'http://localhost:3000/auth/login',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: JSON.stringify(user),
-
-            success: (token) => {
-                if(token) {
-                    console.log(token)
-                    localStorage.setItem('token', token.token)
-                    localStorage.setItem('idUser', token.idUser)
-                    resetFormLogin();
-                    document.location.href = '../index.html'
+        let flag = false;
+        do{
+            if(username ==='' || password === ''){
+                alert("Vui Long nhap du thong tin")
+                break;
+            } else {
+                let user = {
+                    username : username,
+                    password : password
                 }
-                else {
-                    alert("Tai khoan hoac mat khau sai !!")
-                    $('#username').val('');
-                    $('#password').val('');
-                }
+                $.ajax ({
+                    type : 'POST',
+                    url: 'http://localhost:3000/auth/login',
+                    headers : {
+                        'Content-Type': 'application/json',
+                        Authorization: 'Bearer'+ localStorage.getItem('token')
+                    },
+                    data : JSON.stringify(user),
+                    success: (dataToken)=> {
+                        if(dataToken.token) {
+                            console.log(dataToken.token)
+                            localStorage.setItem("token",dataToken.token)
+                            localStorage.setItem("idUser",dataToken.idUser)
+                            document.location.href = '../index.html'
+                        }else{
+                            alert("Tai khoan hoac mat khau sai")
+                            $('#username').val('');
+                            $('#password').val('');
+                        }
+                    }
+                })
             }
-        })
+        }while (flag === true)
     }
+
 </script>
 >>>>>>> 912d6ad (dang ky dang nhap company vs user)
 
