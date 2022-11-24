@@ -174,20 +174,17 @@
                             <!-- form -->
                             <form action="#" class="search-box">
                                 <div class="input-form">
-                                    <input type="text" placeholder="Job Tittle or keyword">
+                                    <input id="namePost1" type="text" placeholder="Job Tittle or keyword">
                                 </div>
                                 <div class="select-form">
                                     <div class="select-itms">
                                         <select name="select" id="select1">
-                                            <option value="">Location BD</option>
-                                            <option value="">Location PK</option>
-                                            <option value="">Location US</option>
-                                            <option value="">Location UK</option>
+                                            <option value="">Hello</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="search-form">
-                                    <a href="#">Find job</a>
+                                    <a onclick="findPostByName()">Find job</a>
                                 </div>
                             </form>
                         </div>
@@ -819,6 +816,40 @@
     function logout() {
         localStorage.clear();
         document.location.href = 'option.html'
+    }
+    function findPostByName() {
+        let namePost = $('#namePost1').val();
+
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/posts/search-by-name?namePost=' + namePost,
+            // data : JSON.stringify(namePost),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer' + localStorage.getItem('token')
+            },
+            success:(dataFind) => {
+                let posts = dataFind
+                let  postHtml = ``;
+                console.log(dataFind);
+                for (let i = 0; i < posts.length; i++) {
+                    postHtml += `<article class="blog_item">
+                            <div class="blog_details">
+                                <a class="d-inline-block" >
+                                    <h2>${posts[i].namePost}</h2>
+                                </a>
+                                <p>That dominion stars lights dominion divide years for fourth have don't stars is that
+                                    he earth it first without heaven in place seed it second morning saying.</p>
+                                <ul class="blog-info-link">
+                                    <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                </ul>
+                            </div>
+                        </article>`
+                }
+                $('#posts').html(postHtml)
+            }
+        })
     }
 </script>
 
