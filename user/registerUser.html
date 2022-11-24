@@ -118,7 +118,9 @@
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="form-group">
-                                <input class="form-control valid" name="name" id="name" type="text"
+
+                                <input class="form-control valid" name="username" id="username" type="text"
+
                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your username'"
                                        placeholder="Enter your username">
                             </div>
@@ -134,13 +136,21 @@
                         <div class="col-8">
                             <p>Upload your CV</p>
                             <div class="form-group">
+
+                                <progress value="0" max="100" id="uploader">0%</progress>
+                                <input type="file" value="upload" accept=".jpg" id="fileButton">
+                                <div id="imgDiv"></div>
+
                                 <input class="form-control" name="image" id="image" type="file">
+
                             </div>
                         </div>
                     </div>
                     <div class="form-group mt-3">
                         <p>You have an account? <a href="loginUser.html" style="color: deeppink">Login Now</a></p>
+
                         <button type="submit" class="button button-contactForm boxed-btn" onclick="register()">SIGNUP
+
                         </button>
                     </div>
                 </form>
@@ -348,28 +358,111 @@
 <script src="../assets/js/plugins.js"></script>
 <script src="../assets/js/main.js"></script>
 
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyCn8pVFRjmpfI3KI4Mt0dRoOC520s2qvX4",
+        authDomain: "jobcv-2017e.firebaseapp.com",
+        projectId: "jobcv-2017e",
+        storageBucket: "jobcv-2017e.appspot.com",
+        messagingSenderId: "831050143310",
+        appId: "1:831050143310:web:57be6d3e60645f7294d51f",
+        measurementId: "G-JR1MCTQ3KK"
+    };
+    firebase.initializeApp(firebaseConfig);
+</script>
 </body>
+<script type="text/javascript">
+    let image = '';
+    let fbBucketName = 'images';
+    let uploader = document.getElementById('uploader');
+    let fileButton = document.getElementById('fileButton');
+
+    fileButton.addEventListener('change', function (e) {
+        console.log('file upload event', e);
+        let file = e.target.files[0];
+        let storageRef = firebase.storage().ref(`${fbBucketName}/${file.name}`);
+        let uploadTask = storageRef.put(file);
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+            function (snapshot) {
+                let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                uploader.value = progress;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            }, function (error) {
+                switch (error.code) {
+                    case 'storage/unauthorized':
+                        break;
+
+                    case 'storage/canceled':
+                        break;
+
+                    case 'storage/unknown':
+                        break;
+                }
+            }, function () {
+                let downloadURL = uploadTask.snapshot.downloadURL;
+                console.log('downloadURL ===>', downloadURL);
+                // let divLocation =document.getElementById("imgDiv");
+                // let imgElement = document.createElement("img");
+                // imgElement.src = downloadURL
+                // console.log('pic ==', image)
+                // divLocation.append(imgElement);
+                console.log('oooo')
+                localStorage.setItem('image', downloadURL);
+                localStorage.getItem('image')
+            });
+
+    });
+
+</script>
 <script>
 
     function register() {
         let username = $('#username').val();
         let password = $('#password').val();
+
+        let image = $('#fileButton').val();
+        let file = localStorage.getItem('image');
+        console.log(image)
+        let flag = false;
+        do {
+            if (username === "" || password === "" || image === "") {
+
         let image = $('#image').val();
         let flag = false;
         do {
             if (username === "" || password === "" || email === "") {
+
                 alert("Vui long nhap du thong tin !!")
                 break;
             } else {
                 let user = {
                     username: username,
                     password: password,
+                image: file
                     image: image
                 }
                 $.ajax({
                     type: 'POST',
                     url: 'http://localhost:3000/auth/register',
                     data: JSON.stringify(user),
+
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    success: (mess) => {
+                        if (mess) {
+                            document.location.href = "registerUser.html"
+                        } else {
+
                     header: {
                         'Content-Type': 'application/json',
                     },
@@ -379,6 +472,7 @@
                             document.location.href = "registerUser.html"
                         }else {
                             alert(mess.mess)
+
                             $('#username').val('');
                             $('#password').val('');
                             $('#image').val('');
@@ -386,7 +480,10 @@
                     }
                 })
             }
-        }while (flag === true)
+
+        }
+				while (flag === true)
+
     }
 </script>
 </html>
