@@ -90,8 +90,6 @@
 .swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right] {
   right: 0.3125em;
 }
-
-
 .swal2-popup.swal2-toast .swal2-actions {
   justify-content: flex-start;
   height: auto;
@@ -1145,7 +1143,4 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
   right: 0;
   bottom: 0;
   left: auto;
-}
-.btn{
-  margin: 10px;
 }
