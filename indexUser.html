@@ -56,10 +56,8 @@
               <div class="main-menu">
                 <nav class="d-none d-lg-block">
                   <ul id="navigation">
-                    <li><a href="indexCompany.html">Home</a></li>
-                    <li><a href="job_listing.html">Find a Jobs </a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="#">Page</a>
+                    <li><a onclick="showPostOfCompany()">Home</a></li>
+                    <li><a onclick="historyApply()">History</a></li>
                       <ul class="submenu">
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="single-blog.html">Blog Details</a></li>
@@ -67,7 +65,7 @@
                         <li><a href="job_details.html">job Details</a></li>
                       </ul>
                     </li>
-                    <li><a href="contact.html">Contact</a></li>
+
                   </ul>
                 </nav>
               </div>
@@ -145,99 +143,10 @@
             <h2>Browse Top Categories </h2>
           </div>
         </div>
-      </div>
-      <div class="row d-flex justify-contnet-center">
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-          <div class="single-services text-center mb-30">
-            <div class="services-ion">
-              <span class="flaticon-tour"></span>
-            </div>
-            <div class="services-cap">
-              <h5><a href="job_listing.html">Design & Creative</a></h5>
-              <span>(653)</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-          <div class="single-services text-center mb-30">
-            <div class="services-ion">
-              <span class="flaticon-cms"></span>
-            </div>
-            <div class="services-cap">
-              <h5><a href="job_listing.html">Design & Development</a></h5>
-              <span>(658)</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-          <div class="single-services text-center mb-30">
-            <div class="services-ion">
-              <span class="flaticon-report"></span>
-            </div>
-            <div class="services-cap">
-              <h5><a href="job_listing.html">Sales & Marketing</a></h5>
-              <span>(658)</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-          <div class="single-services text-center mb-30">
-            <div class="services-ion">
-              <span class="flaticon-app"></span>
-            </div>
-            <div class="services-cap">
-              <h5><a href="job_listing.html">Mobile Application</a></h5>
-              <span>(658)</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-          <div class="single-services text-center mb-30">
-            <div class="services-ion">
-              <span class="flaticon-helmet"></span>
-            </div>
-            <div class="services-cap">
-              <h5><a href="job_listing.html">Construction</a></h5>
-              <span>(658)</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-          <div class="single-services text-center mb-30">
-            <div class="services-ion">
-              <span class="flaticon-high-tech"></span>
-            </div>
-            <div class="services-cap">
-              <h5><a href="job_listing.html">Information Technology</a></h5>
-              <span>(658)</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-          <div class="single-services text-center mb-30">
-            <div class="services-ion">
-              <span class="flaticon-real-estate"></span>
-            </div>
-            <div class="services-cap">
-              <h5><a href="job_listing.html">Real Estate</a></h5>
-              <span>(658)</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-          <div class="single-services text-center mb-30">
-            <div class="services-ion">
-              <span class="flaticon-content"></span>
-            </div>
-            <div class="services-cap">
-              <h5><a href="job_listing.html">Content Writer</a></h5>
-              <span>(658)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- More Btn -->
+        <div class="row d-flex justify-contnet-center" id="majors">
 
+        </div>
+        <!-- More Btn -->
     </div>
   </div>
   <!-- Our Services End -->
@@ -704,7 +613,7 @@
                                 <a class="d-inline-block" href="single-blog.html">
                                     <h2>${posts[i].namePost}</h2>
                                 </a>
-                                <p>${posts[i].contents}</p>
+                                <p>Contnent: ${posts[i].contents}</p>
                                  <ul class="blog-info-link">
                                  </ul
                                  <ul class="blog-info-link">
@@ -715,6 +624,40 @@
                         </article>`
         }
         $('#posts').html(htmlPost);
+      }
+    })
+  }
+
+  function showPostByMajor(id) {
+    console.log('id', id);
+    $.ajax({
+      type: "GET",
+      url: 'http://localhost:3000/posts/' + id,
+      success: (posts) => {
+        console.log(posts)
+        let htmlMajor = ``;
+        for (let i = 0; i < posts.length; i++) {
+          htmlMajor += `
+                         <article class="blog_item">
+                            <div class="blog_details">
+                                <a class="d-inline-block" >
+                                    <h2>${posts[i].namePost}</h2>
+                                </a>
+                                <p>Content: ${posts[i].contents}</p>
+                                <ul class="blog-info-link">
+                                    <li><a ><i</i>Company Name: ${posts[i].company.companyName}</a></li>
+
+                                </ul
+                                <ul class="blog-info-link">
+                                    <li><a ><i></i>Name Major: ${posts[i].major.nameMajor}</a></li>
+                                </ul
+                                <td><button onclick="historyApply()">History</button></td>
+                                 <td><button onclick="applyPost('${posts[i]._id}')">Apply</button></td>
+                            </div>
+                        </article>
+                      `
+        }
+        $('#posts').html(htmlMajor);
       }
     })
   }
@@ -794,9 +737,9 @@
                       <article class="blog_item">
                             <div class="blog_details">
                                 <a class="d-inline-block" href="single-blog.html">
-                                    <h2>${posts[i].post.namePost}</h2>
+                                    <h2> ${posts[i].post.namePost}</h2>
                                 </a>
-                                <p>${posts[i].post.contents}</p>
+                                <p>Content: ${posts[i].post.contents}</p>
                                  <ul class="blog-info-link">
                                  </ul
                                  <ul class="blog-info-link">
@@ -809,10 +752,36 @@
       }
     })
   }
+  showMajor();
+  function showMajor() {
+    $.ajax({
+      type: "GET",
+      url: 'http://localhost:3000/majors',
+      success: (majors) => {
+        console.log(majors)
+        let htmlMajor = ``;
+        for (let i = 0; i < majors.length; i++) {
+          htmlMajor += `
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6" onclick="showPostByMajor('${majors[i]._id}')">
+                <div class="single-services text-center mb-30">
+                    <div class="services-ion">
+                        <span class="flaticon-tour"></span>
+                    </div>
+                    <div class="services-cap">
+                        <h5><a>${majors[i].nameMajor}</a></h5>
+                    </div>
+                </div>
+            </div>
+                      `
+        }
+        $('#majors').html(htmlMajor);
+      }
+    })
+  }
 
   function logout(){
     localStorage.clear();
-    document.location.href = 'user/loginUser.html'
+    document.location.href = 'option.html'
   }
 
   // function apply(idPost, idUser) {

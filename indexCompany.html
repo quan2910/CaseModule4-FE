@@ -55,11 +55,6 @@
                             <option onclick="showFormCreate()">Major Name</option>
                         </select>
                     </div>
-<!--                    <div class="mb-3" id='company'>-->
-<!--                        <select class="form-select" aria-label="Default select example">-->
-<!--                            <option onclick="showFormCreate()">Company Name</option>-->
-<!--                        </select>-->
-<!--                    </div>-->
                     <div class="mb-3">
                         <label class="form-label">Contents</label>
                         <input type="text" class="form-control" id="contents">
@@ -91,7 +86,7 @@
                     </div>
 
                     <div class="mb-3" id='majorEdit'>
-                        <select class="form-select" aria-label="Default select example">
+                        <select id="majorInput_1" class="form-select" aria-label="Default select example">
                             <option onclick="showFormEdit()">Major Name</option>
                         </select>
                     </div>
@@ -130,7 +125,7 @@
                                 <nav class="d-none d-lg-block">
                                     <ul id="navigation">
                                         <li>
-                                        <li><a href="index.html">Home</a></li>
+                                        <li><a onclick="showAll()">Home</a></li>
                                         <li><a onclick="">find</a></li>
                                         <li><a href="about.html">About</a></li>
                                         <li><a href="blog.html">Blog</a>
@@ -627,7 +622,7 @@
                         <span class="flaticon-tour"></span>
                     </div>
                     <div class="services-cap">
-                        <h5><a href="">${majors[i].nameMajor}</a></h5>
+                        <h5 >${majors[i].nameMajor}</h5>
                     </div>
                 </div>
             </div>
@@ -638,7 +633,9 @@
         })
     }
 
+
     function showPostByMajor(id) {
+        console.log('id', id);
         $.ajax({
             type: "GET",
             url: 'http://localhost:3000/posts/' + id,
@@ -652,12 +649,14 @@
                                 <a class="d-inline-block" >
                                     <h2>${posts[i].namePost}</h2>
                                 </a>
-                                <p>That dominion stars lights dominion divide years for fourth have don't stars is that
-                                    he earth it first without heaven in place seed it second morning saying.</p>
+                                <p>Content: ${posts[i].contents}</p>
                                 <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i>aaa</a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i>${posts[i].contents}</a></li>
-                                </ul>
+                                    <li><a ><i</i>Company Name: ${posts[i].company.companyName}</a></li>
+
+                                </ul
+                                <ul class="blog-info-link">
+                                    <li><a ><i></i>Name Major: ${posts[i].major.nameMajor}</a></li>
+                                </ul
                             </div>
                         </article>
                       `
@@ -756,19 +755,20 @@
 
     function showFormEdit(id) {
         idEditPost = id
-        console.log(idEditPost)
+        console.log( 'ID nè',idEditPost)
         $.ajax({
             type: "GET",
             url: 'http://localhost:3000/majors',
             success: (majors) => {
-                let htmlMajor = `<div class="mb-3" id ='majorEdit'>
+                console.log('major nè: ', majors)
+                let htmlMajor = `<div class="mb-3" id ='major'>
                         <label  class="form-label" >Major Name</label>
-                        <select id="majorInput" name = "major">`;
+                        <select id="majorInput_1" name = "major">`;
                 for (let i = 0; i < majors.length; i++) {
-                    console.log(majors[i].majorName)
+                    console.log(majors[i].nameMajor)
                     htmlMajor += `
 
-                            <option value="${majors[i]._id}" name = "major">${majors[i].majorName} </option>
+                            <option value="${majors[i]._id}" name = "major">${majors[i].nameMajor} </option>
 
                       `
                 }
@@ -818,7 +818,7 @@
 
     function logout() {
         localStorage.clear();
-        document.location.href = 'company/loginCompany.html'
+        document.location.href = 'option.html'
     }
 </script>
 
