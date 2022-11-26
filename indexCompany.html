@@ -215,19 +215,7 @@
     </div>
     <!-- Our Services End -->
     <!-- Online CV Area Start -->
-    <div class="online-cv cv-bg section-overly pt-90 pb-120" data-background="assets/img/gallery/cv_bg.jpg">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-10">
-                    <div class="cv-caption text-center">
-                        <p class="pera1">FEATURED TOURS Packages</p>
-                        <p class="pera2"> Make a Difference with Your Online Resume!</p>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- -->
     <!-- Online CV Area End-->
 
 
@@ -689,7 +677,7 @@
                                  </ul
                                  <td><button onclick="showFormEdit('${posts[i]._id}')"   aria-label="Default select example"type="button" data-bs-toggle="modal" data-bs-target="#exampleModal_edit">Edit</button></td>
                                   <td><button onclick="showFormDelete('${posts[i]._id}')">Delete</button></td>
-
+                                    <td><button onclick="showCvOfPost('${posts[i]._id}')">Show CV</button></td>
                             </div>
                         </article>`
                 }
@@ -752,7 +740,7 @@
 
     function showFormEdit(id) {
         idEditPost = id
-        console.log( 'ID nè',idEditPost)
+        console.log('ID nè', idEditPost)
         $.ajax({
             type: "GET",
             url: 'http://localhost:3000/majors',
@@ -817,6 +805,7 @@
         localStorage.clear();
         document.location.href = 'option.html'
     }
+
     function findPostByName() {
         let namePost = $('#namePost1').val();
 
@@ -828,9 +817,9 @@
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer' + localStorage.getItem('token')
             },
-            success:(dataFind) => {
+            success: (dataFind) => {
                 let posts = dataFind
-                let  postHtml = ``;
+                let postHtml = ``;
                 console.log(dataFind);
                 for (let i = 0; i < posts.length; i++) {
                     postHtml += `<article class="blog_item">
@@ -851,6 +840,31 @@
             }
         })
     }
+
+    function showCvOfPost(id) {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/applies/find-cv/' + id,
+            success: (applies) => {
+                let htmlPost = ``;
+                for (let i = 0; i < applies.length; i++) {
+                    htmlPost += `
+                      <article class="blog_item">
+                            <div class="blog_details">
+                                <img width="600" height="400" src="${applies[i].user.cv}" alt="">
+                                 <ul class="blog-info-link">
+                                 </ul
+                                 <ul class="blog-info-link">
+                                 </ul
+
+                            </div>
+                        </article>`
+                }
+                $('#posts').html(htmlPost);
+            }
+        })
+    }
+
 </script>
 
 </body>
