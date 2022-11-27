@@ -85,19 +85,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label">Title</label>
+                        <label class="form-label">Title</label> <br>
                         <input type="text" class="form-control" id="namePostEdit" aria-describedby="emailHelp">
                     </div>
 
-<!--                    <div class="mb-3" id='majorEdit'>-->
-<!--                        <select id="majorInput_1" class="form-select" aria-label="Default select example">-->
-<!--                            <option onclick="showFormEdit()">Major Name</option>-->
-<!--                        </select>-->
-<!--                    </div>-->
                     <div class="mb-3">
-                        <label class="form-label">Contents</label>
-                        <textarea name="" id="contentsEdit" cols="30" rows="10"></textarea>
-<!--                        <input type="text" class="form-control" id="contentsEdit">-->
+                        <label class="form-label">Contents</label> <br>
+                        <textarea style="width: 100%" name="" id="contentsEdit" cols="30" rows="10"></textarea>
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -208,6 +203,7 @@
             <div class="row d-flex justify-contnet-center" id="majors">
 
             </div>
+            <div id="post2"></div>
             <!-- More Btn -->
 
         </div>
@@ -720,7 +716,8 @@
                 console.log('post nè: ', post)
                 idMajorInPost = post.major;
                 console.log(idMajorInPost)
-
+                $('#namePostEdit').val(post.namePost)
+                $('#contentsEdit').val(post.contents)
             }
         })
     }
