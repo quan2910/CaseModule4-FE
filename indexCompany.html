@@ -55,9 +55,13 @@
                             <option onclick="showFormCreate()">Major Name</option>
                         </select>
                     </div>
-                    <div class="mb-3">
+                    <div>
                         <label class="form-label">Contents</label>
-                        <input type="text" class="form-control" id="contents">
+                    </div>
+                    <div class="mb-3">
+
+                        <textarea style="width: 100%" name="" id="contents" cols="30" rows="10"></textarea>
+<!--                        <input type="text" class="form-control" id="contents">-->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -85,14 +89,15 @@
                         <input type="text" class="form-control" id="namePostEdit" aria-describedby="emailHelp">
                     </div>
 
-                    <div class="mb-3" id='majorEdit'>
-                        <select id="majorInput_1" class="form-select" aria-label="Default select example">
-                            <option onclick="showFormEdit()">Major Name</option>
-                        </select>
-                    </div>
+<!--                    <div class="mb-3" id='majorEdit'>-->
+<!--                        <select id="majorInput_1" class="form-select" aria-label="Default select example">-->
+<!--                            <option onclick="showFormEdit()">Major Name</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
                     <div class="mb-3">
                         <label class="form-label">Contents</label>
-                        <input type="text" class="form-control" id="contentsEdit">
+                        <textarea name="" id="contentsEdit" cols="30" rows="10"></textarea>
+<!--                        <input type="text" class="form-control" id="contentsEdit">-->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -195,7 +200,7 @@
     </div>
     <!-- slider Area End-->
     <!-- Our Services Start -->
-    <div class="our-services section-pad-t30">
+    <div class="our-services section-pad-t30" style="padding-bottom: 25px;">
         <div class="container">
             <!-- Section Tittle -->
             <div class="row">
@@ -220,7 +225,7 @@
 
 
     <!--================Blog Area =================-->
-    <section class="blog_area section-padding">
+    <section class="blog_area section-padding" style="padding-top: 25px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
@@ -478,8 +483,7 @@
             type: "GET",
             url: 'http://localhost:3000/posts',
             success: (posts) => {
-                console.log("chán lắm rồi")
-                console.log(posts)
+                console.log('all post' + posts)
                 let htmlPost = ``;
                 for (let i = 0; i < posts.length; i++) {
                     console.log(posts[i].company)
@@ -512,12 +516,10 @@
             type: "GET",
             url: 'http://localhost:3000/majors',
             success: (majors) => {
-                console.log(majors)
                 let htmlMajor = `<div class="mb-3" id ='major'>
                         <label  class="form-label" >Major Name</label>
                         <select id="majorInput" name = "major">`;
                 for (let i = 0; i < majors.length; i++) {
-                    console.log(majors[i].nameMajor)
                     htmlMajor += `
 
                             <option value="${majors[i]._id}" name = "major">${majors[i].nameMajor} </option>
@@ -530,27 +532,6 @@
             }
 
         })
-        // $.ajax({
-        //     type: "GET",
-        //     url: 'http://localhost:3000/companies',
-        //     success: (companies) => {
-        //         let htmlCompany = `<div class="mb-3" id ='company'>
-        //                 <label  class="form-label" >Company Name</label>
-        //                 <select id="companyInput" name = "company">`;
-        //         for (let i = 0; i < companies.length; i++) {
-        //             console.log(companies[i].companyName)
-        //             htmlCompany += `
-        //
-        //                     <option value="${companies[i]._id}" name = "company">${companies[i].companyName} </option>
-        //
-        //               `
-        //         }
-        //         htmlCompany += `</select>
-        //             </div>`
-        //         $('#company').html(htmlCompany);
-        //     }
-        //
-        // })
     }
 
     function create() {
@@ -568,7 +549,6 @@
             },
             contents: contents
         }
-        console.log(posts)
         $.ajax({
             type: 'POST',
             url: 'http://localhost:3000/posts',
@@ -597,7 +577,6 @@
             type: "GET",
             url: 'http://localhost:3000/majors',
             success: (majors) => {
-                console.log(majors)
                 let htmlMajor = ``;
                 for (let i = 0; i < majors.length; i++) {
                     htmlMajor += `
@@ -620,7 +599,6 @@
 
 
     function showPostByMajor(id) {
-        console.log('id', id);
         $.ajax({
             type: "GET",
             url: 'http://localhost:3000/posts/' + id,
@@ -675,7 +653,7 @@
                                  </ul
                                  <ul class="blog-info-link">
                                  </ul
-                                 <td><button onclick="showFormEdit('${posts[i]._id}')"   aria-label="Default select example"type="button" data-bs-toggle="modal" data-bs-target="#exampleModal_edit">Edit</button></td>
+                                 <td><button class="btn head-btn1" onclick="showFormEdit('${posts[i]._id}')"   aria-label="Default select example"type="button" data-bs-toggle="modal" data-bs-target="#exampleModal_edit">Edit</button></td>
                                   <td><button onclick="showFormDelete('${posts[i]._id}')">Delete</button></td>
                                     <td><button onclick="showCvOfPost('${posts[i]._id}')">Show CV</button></td>
                             </div>
@@ -737,29 +715,18 @@
 
 
     let idEditPost;
+    let idMajorInPost;
 
     function showFormEdit(id) {
         idEditPost = id
-        console.log('ID nè', idEditPost)
         $.ajax({
             type: "GET",
-            url: 'http://localhost:3000/majors',
-            success: (majors) => {
-                console.log('major nè: ', majors)
-                let htmlMajor = `<div class="mb-3" id ='major'>
-                        <label  class="form-label" >Major Name</label>
-                        <select id="majorInput_1" name = "major">`;
-                for (let i = 0; i < majors.length; i++) {
-                    console.log(majors[i].nameMajor)
-                    htmlMajor += `
+            url: 'http://localhost:3000/posts/find/' + id,
+            success: (post) => {
+                console.log('post nè: ', post)
+                idMajorInPost = post.major;
+                console.log(idMajorInPost)
 
-                            <option value="${majors[i]._id}" name = "major">${majors[i].nameMajor} </option>
-
-                      `
-                }
-                htmlMajor += `</select>
-                    </div>`
-                $('#major').html(htmlMajor);
             }
 
         })
@@ -769,10 +736,9 @@
     function editPost(idEdit) {
         idEdit = idEditPost
         id = localStorage.getItem('idCompany')
-        console.log('id', id)
         let namePost = $('#namePostEdit').val();
         let companyId = id;
-        let majorId = $('#majorInput').val();
+        let majorId = idMajorInPost;
         let contents = $('#contentsEdit').val();
         let posts = {
             namePost: namePost,
@@ -812,7 +778,6 @@
         $.ajax({
             type: 'GET',
             url: 'http://localhost:3000/posts/search-by-name?namePost=' + namePost,
-            // data : JSON.stringify(namePost),
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer' + localStorage.getItem('token')
@@ -842,6 +807,7 @@
     }
 
     function showCvOfPost(id) {
+        console.log("id Post " + id)
         $.ajax({
             type: 'GET',
             url: 'http://localhost:3000/applies/find-cv/' + id,
@@ -851,12 +817,14 @@
                     htmlPost += `
                       <article class="blog_item">
                             <div class="blog_details">
-                                <img width="600" height="400" src="${applies[i].user.cv}" alt="">
+                                <img width="600" height="400" src="${applies[i].user.image}" alt="">
+                                <br>
+                                <br>
                                  <ul class="blog-info-link">
+                                 Name: ${applies[i].user.username}
                                  </ul
                                  <ul class="blog-info-link">
                                  </ul
-
                             </div>
                         </article>`
                 }
