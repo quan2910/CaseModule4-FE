@@ -120,7 +120,7 @@
                     <div class="col-lg-3 col-md-2">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                            <a href="indexCompany.html"><img src="assets/img/logo/logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-9">
@@ -178,17 +178,11 @@
                         <div class="col-xl-8">
                             <!-- form -->
                             <form action="#" class="search-box">
-                                <div class="input-form">
+                                <div class="input-form" style="width: 75%">
                                     <input id="namePost1" type="text" placeholder="Job Tittle or keyword">
                                 </div>
-                                <div class="select-form">
-                                    <div class="select-itms">
-                                        <select name="select" id="select1">
-                                            <option value="">Hello</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="search-form">
+
+                                <div class="search-form" style="width: 25%">
                                     <a onclick="findPostByName()">Find job</a>
                                 </div>
                             </form>
@@ -500,7 +494,7 @@
                                 </ul
                                 <ul class="blog-info-link">
 
-                                    <li><a ><i></i>Name Major: ${posts[i].major.nameMajor}</a></li>
+                                    <li><a ><i></i>Name Major: ${posts[i].major.majorName}</a></li>
                                 </ul
                             </div>
                         </article>`
@@ -522,7 +516,7 @@
                 for (let i = 0; i < majors.length; i++) {
                     htmlMajor += `
 
-                            <option value="${majors[i]._id}" name = "major">${majors[i].nameMajor} </option>
+                            <option value="${majors[i]._id}" name = "major">${majors[i].majorName} </option>
 
                       `
                 }
@@ -586,7 +580,7 @@
                         <span class="flaticon-tour"></span>
                     </div>
                     <div class="services-cap">
-                        <h5 >${majors[i].nameMajor}</h5>
+                        <h5 >${majors[i].majorName}</h5>
                     </div>
                 </div>
             </div>
@@ -653,9 +647,9 @@
                                  </ul
                                  <ul class="blog-info-link">
                                  </ul
-                                 <td><button class="btn head-btn1" onclick="showFormEdit('${posts[i]._id}')"   aria-label="Default select example"type="button" data-bs-toggle="modal" data-bs-target="#exampleModal_edit">Edit</button></td>
-                                  <td><button onclick="showFormDelete('${posts[i]._id}')">Delete</button></td>
-                                    <td><button onclick="showCvOfPost('${posts[i]._id}')">Show CV</button></td>
+                                 <td><button style="width: 140px" class="btn head-btn1" onclick="showFormEdit('${posts[i]._id}')"   aria-label="Default select example"type="button" data-bs-toggle="modal" data-bs-target="#exampleModal_edit">Edit</button></td>
+                                  <td><button style="width: 140px" class="btn head-btn1" onclick="showFormDelete('${posts[i]._id}')">Delete</button></td>
+                                    <td><button style="width: 150px" class="btn head-btn1" onclick="showCvOfPost('${posts[i]._id}')">Show CV</button></td>
                             </div>
                         </article>`
                 }
@@ -728,7 +722,6 @@
                 console.log(idMajorInPost)
 
             }
-
         })
     }
 
@@ -787,16 +780,16 @@
                 let postHtml = ``;
                 console.log(dataFind);
                 for (let i = 0; i < posts.length; i++) {
+                    console.log(posts)
                     postHtml += `<article class="blog_item">
                             <div class="blog_details">
                                 <a class="d-inline-block" >
                                     <h2>${posts[i].namePost}</h2>
                                 </a>
-                                <p>That dominion stars lights dominion divide years for fourth have don't stars is that
-                                    he earth it first without heaven in place seed it second morning saying.</p>
+                                <p>${posts[i].contents}</p>
                                 <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                    <li>Major: ${posts[i].major.nameMajor}</li>
+                                    <li>Company name: ${posts[i].company.companyName}</li>
                                 </ul>
                             </div>
                         </article>`
@@ -817,7 +810,7 @@
                     htmlPost += `
                       <article class="blog_item">
                             <div class="blog_details">
-                                <img width="600" height="400" src="${applies[i].user.image}" alt="">
+                                <img width="500" height="650" src="${applies[i].user.image}" alt="">
                                 <br>
                                 <br>
                                  <ul class="blog-info-link">

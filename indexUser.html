@@ -47,7 +47,7 @@
           <div class="col-lg-3 col-md-2">
             <!-- Logo -->
             <div class="logo">
-              <a href="indexCompany.html"><img src="assets/img/logo/logo.png" alt=""></a>
+              <a href="indexUser.html"><img src="assets/img/logo/logo.png" alt=""></a>
             </div>
           </div>
           <div class="col-lg-9 col-md-9">
@@ -599,13 +599,13 @@
                                 <a class="d-inline-block" href="single-blog.html">
                                     <h2>${posts[i].namePost}</h2>
                                 </a>
-                                <p>Contnent: ${posts[i].contents}</p>
+                                <p>Content: ${posts[i].contents}</p>
                                  <ul class="blog-info-link">
                                  </ul
                                  <ul class="blog-info-link">
                                  </ul
-                                 <td><button onclick="historyApply()">History</button></td>
-                                 <td><button onclick="applyPost('${posts[i]._id}')">Apply</button></td>
+                                 <td><button style="width: 140px" class="btn head-btn1" onclick="historyApply()">History</button></td>
+                                 <td><button style="width: 140px" class="btn head-btn1" onclick="applyPost('${posts[i]._id}')">Apply</button></td>
                             </div>
                         </article>`
         }
@@ -637,8 +637,8 @@
                                 <ul class="blog-info-link">
                                     <li><a ><i></i>Name Major: ${posts[i].major.nameMajor}</a></li>
                                 </ul
-                                <td><button onclick="historyApply()">History</button></td>
-                                 <td><button onclick="applyPost('${posts[i]._id}')">Apply</button></td>
+                                <td><button style="width: 140px" class="btn head-btn1" onclick="historyApply()">History</button></td>
+                                 <td><button style="width: 140px" class="btn head-btn1" onclick="applyPost('${posts[i]._id}')">Apply</button></td>
                             </div>
                         </article>
                       `
@@ -659,11 +659,11 @@
     })
 
     swalWithBootstrapButtons.fire({
-      title: 'Apply nhé???',
+      title: 'Apply ???',
       // text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Oke',
+      confirmButtonText: 'Yes',
       cancelButtonText: 'No',
       reverseButtons: true
     }).then((result) => {
@@ -730,7 +730,7 @@
                                  </ul
                                  <ul class="blog-info-link">
                                  </ul
-                                 <td><button onclick="applyPost('${posts[i]._id}')">Apply</button></td>
+                                 <td><button style="width: 140px" class="btn head-btn1" onclick="applyPost('${posts[i]._id}')">Apply</button></td>
                             </div>
                         </article>`
         }
@@ -754,7 +754,7 @@
                         <span class="flaticon-tour"></span>
                     </div>
                     <div class="services-cap">
-                        <h5><a>${majors[i].nameMajor}</a></h5>
+                        <h5><a>${majors[i].majorName}</a></h5>
                     </div>
                 </div>
             </div>
