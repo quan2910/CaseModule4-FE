@@ -664,12 +664,12 @@
         })
 
         swalWithBootstrapButtons.fire({
-            title: 'Có xóa không???',
+            title: 'You want to delete?',
             // text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Xóa',
-            cancelButtonText: 'Không',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
