@@ -35,7 +35,7 @@
 
 <body>
 
-
+<section id="hm">
 <div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -72,7 +72,7 @@
         </div>
     </div>
 </div>
-
+</section>
 
 <div>
     <div class="modal fade" id="exampleModal_edit" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -126,9 +126,9 @@
                                     <ul id="navigation">
                                         <li>
                                         <li><a onclick="showAll()">Home</a></li>
-                                        <li><a onclick="">find</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="blog.html">Blog</a>
+                                        <li><a href="#mj">Major</a></li>
+                                        <li><a href="#ps">Top Post</a></li>
+                                        <li><a href="#about">About</a></li>
                                         </li>
                                         <li><a data-bs-toggle="modal" data-bs-target="#exampleModal"
                                                onclick="showFormCreate()"> Create Post</a></li>
@@ -189,13 +189,14 @@
     </div>
     <!-- slider Area End-->
     <!-- Our Services Start -->
+    <section id="mj">
     <div class="our-services section-pad-t30" style="padding-bottom: 25px;">
         <div class="container">
             <!-- Section Tittle -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-tittle text-center">
-                        <span>FEATURED TOURS Packages</span>
+                        <span>MAJOR OF JOB</span>
                         <h2>Browse Top Categories </h2>
                     </div>
                 </div>
@@ -208,6 +209,7 @@
 
         </div>
     </div>
+    </section>
     <!-- Our Services End -->
     <!-- Online CV Area Start -->
 <!-- -->
@@ -215,7 +217,8 @@
 
 
     <!--================Blog Area =================-->
-    <section class="blog_area section-padding" style="padding-top: 25px;">
+
+    <section id="ps" class="blog_area section-padding" style="padding-top: 25px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
@@ -229,13 +232,13 @@
 
 
     <!-- How  Apply Process Start-->
+
     <div class="apply-process-area apply-bg pt-150 pb-150" data-background="assets/img/gallery/how-applybg.png">
         <div class="container">
             <!-- Section Tittle -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-tittle white-text text-center">
-                        <span>Apply process</span>
                         <h2> How it works</h2>
                     </div>
                 </div>
@@ -281,11 +284,13 @@
             </div>
         </div>
     </div>
+
     <!-- How  Apply Process End-->
 
 </main>
 <footer>
     <!-- Footer Start-->
+    <section id="about">
     <div class="footer-area footer-bg footer-padding">
         <div class="container">
             <div class="row d-flex justify-content-between">
@@ -295,8 +300,10 @@
                             <div class="footer-tittle">
                                 <h4>About Us</h4>
                                 <div class="footer-pera">
-                                    <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so
-                                        behold.</p>
+                                    <p>Nguyen Truong Quan
+                                        <br> Le Thi Ha
+                                        <br> Nguyen Doan Long Vu
+                                        <br>Vu Van Cuong</p>
                                 </div>
                             </div>
                         </div>
@@ -309,11 +316,10 @@
                             <h4>Contact Info</h4>
                             <ul>
                                 <li>
-                                    <p>Address :Your address goes
-                                        here, your demo address.</p>
+                                    <p>Address :HapulicoComplex, ThanhXuan, HaNoi.</p>
                                 </li>
-                                <li><a href="#">Phone : +8880 44338899</a></li>
-                                <li><a href="#">Email : info@colorlib.com</a></li>
+                                <li><a href="#">Phone : +84 966 584 902</a></li>
+                                <li><a href="#">Email : ngtruongquan@gmail.com</a></li>
                             </ul>
                         </div>
 
@@ -393,6 +399,7 @@
             </div>
         </div>
     </div>
+    </section>
     <!-- footer-bottom area -->
     <div class="footer-bottom-area footer-bg">
         <div class="container">
@@ -608,7 +615,7 @@
 
                                 </ul
                                 <ul class="blog-info-link">
-                                    <li><a ><i></i>Name Major: ${posts[i].major.nameMajor}</a></li>
+                                    <li><a ><i></i>Name Major: ${posts[i].major.majorName}</a></li>
                                 </ul
                             </div>
                         </article>
